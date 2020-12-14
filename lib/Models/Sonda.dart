@@ -1,9 +1,17 @@
+import 'package:meta/meta.dart';
+
 class Sonda {
   final String topRight;
   final String initialPosition;
   final String movementInstructions;
+
   int _xMax, _yMax, _positionX, _positionY;
   String _initialDirection;
+
+  @visibleForTesting
+  Sonda.blank(String this.topRight, String this.initialPosition,
+      String this.movementInstructions);
+
   Sonda(String this.topRight, String this.initialPosition,
       String this.movementInstructions) {
     if (!validateInputs()) {
@@ -15,7 +23,7 @@ class Sonda {
           movementInstructions);
     }
     print(validateInputs());
-    setInitialProperties();
+    _setInitialProperties();
   }
 
   bool validateInputs() {
@@ -29,7 +37,7 @@ class Sonda {
         isValidmovementInstructions;
   }
 
-  void setInitialProperties() {
+  void _setInitialProperties() {
     var splitedTopRight = topRight.split(" ");
     var splitedInitialPosition = initialPosition.split(" ");
 
@@ -41,8 +49,8 @@ class Sonda {
     _initialDirection = splitedInitialPosition[2];
   }
 
-  void turn() {}
-  void moveForward() {}
-  void executeMovementInstructions() {}
+  void _turn() {}
+  void _moveForward() {}
+  void _executeMovementInstructions() {}
   get actualState {}
 }
