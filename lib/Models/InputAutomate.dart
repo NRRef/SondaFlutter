@@ -6,11 +6,13 @@ class InputAutomate {
   List<Map> _sondaProperties = new List();
   List<String> _inputLines = new List();
   InputAutomate(String input) {
-    _inputLines = input.split('\n');
-    _topRight = _inputLines[0];
-    _splitProperties();
-    _sondasConstruct();
-    _outputMount();
+    try {
+      _inputLines = input.split('\n');
+      _topRight = _inputLines[0];
+      _splitProperties();
+      _sondasConstruct();
+      _outputMount();
+    } catch (e) {}
   }
   void _splitProperties() {
     for (int i = 1; i < _inputLines.length; i = i + 2) {
