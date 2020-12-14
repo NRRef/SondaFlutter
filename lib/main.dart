@@ -1,5 +1,6 @@
 //import 'package:flutter/material.dart';
-import './Models/Sonda.dart' as sonda;
+//import './Models/Sonda.dart' as sonda;
+import 'Models/InputAutomate.dart';
 
 void main() {
   String input = """5 5
@@ -7,12 +8,14 @@ void main() {
 LMLMLMLMM
 3 3 E
 MMRMMRMRRM""";
-  try {
-    sonda.Sonda sn = new sonda.Sonda("5 5", "1 2 N", "LMLMLMLMM");
-    print(sn.actualState);
-  } catch (e) {
-    print(e);
-  }
+  InputAutomate output = InputAutomate(input);
+  print(output.output);
+  // try {
+  //   sonda.Sonda sn = new sonda.Sonda("5 5", "1 2 N", "LMLMLMLMM");
+  //   print(sn.actualState);
+  // } catch (e) {
+  //   print(e);
+  // }
   //runApp(MyApp());
 }
 
