@@ -7,12 +7,17 @@ class InputAutomate {
   List<String> _inputLines = new List();
   InputAutomate(String input) {
     try {
+      if(!validateInput(input)) throw("Invalid Input");
       _inputLines = input.split('\n');
       _topRight = _inputLines[0];
       _splitProperties();
       _sondasConstruct();
       _outputMount();
     } catch (e) {}
+  }
+  bool validateInput(input){
+    return RegExp(r"^[0-9]+\s[0-9]+(\n|\r)([0-9]+\s[0-9]+\s(N|E|S|W)(\n|\r)(L|R|M)*(\n|\r)*)*$").hasMatch(input);
+        
   }
   void _splitProperties() {
     for (int i = 1; i < _inputLines.length; i = i + 2) {
