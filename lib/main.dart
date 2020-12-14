@@ -10,12 +10,7 @@ LMLMLMLMM
 MMRMMRMRRM""";
   InputAutomate output = InputAutomate(input);
   print(output.output);
-  // try {
-  //   sonda.Sonda sn = new sonda.Sonda("5 5", "1 2 N", "LMLMLMLMM");
-  //   print(sn.actualState);
-  // } catch (e) {
-  //   print(e);
-  // }
+
   //runApp(MyApp());
 }
 
