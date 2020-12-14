@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sonda_flutter/Models/Sonda.dart';
-import 'package:meta/meta.dart';
 
 void main() {
   test('Validation pass', () {

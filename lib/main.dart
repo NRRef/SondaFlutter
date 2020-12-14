@@ -9,6 +9,7 @@ LMLMLMLMM
 MMRMMRMRRM""";
   try {
     sonda.Sonda sn = new sonda.Sonda("5 5", "1 2 N", "LMLMLMLMM");
+    print(sn.actualState);
   } catch (e) {
     print(e);
   }
