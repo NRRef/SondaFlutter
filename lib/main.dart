@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import './Models/Sonda.dart' as sonda;
 
 void main() {
-  runApp(MyApp());
+  String input = """5 5
+1 2 N
+LMLMLMLMM
+3 3 E
+MMRMMRMRRM""";
+  try {
+    sonda.Sonda sn = new sonda.Sonda("5 d5", "1 2 N", "LMLMLMLMM");
+  } catch (e) {
+    print(e);
+  }
+  //runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
