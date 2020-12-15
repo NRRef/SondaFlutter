@@ -1,16 +1,19 @@
-# sonda_flutter
+# Sonda Flutter
 
-A new Flutter project.
+Entrega do [desafio técnico](https://gist.github.com/eliasgarciajr/4ef466621b13f34963368b695f15a520) para a vaga de desenvolvedor na Cappta. <br>
+Para submissão do desafio foi desenvolvido um app em Dart/Flutter.
 
-## Getting Started
+## Instalação e uso
 
-This project is a starting point for a Flutter application.
+Para executar o projeto é necessário ter o flutter instalado conforme a [documentação](https://flutter.dev/docs).
+Também é necessário possuir um dispositivo android ou AVM rodando na maquina.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Após clonar este repositório, execute o comando abaixo na pasta do projeto.
+```
+$ flutter run
+```
+Caso deseje rodar a versão de release, execute os comandos abaixo:
+```
+$ flutter build apk
+$ flutter run --release
+```
