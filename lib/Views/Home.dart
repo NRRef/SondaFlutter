@@ -9,10 +9,50 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final TextEditingController inputController = new TextEditingController();
-  final TextEditingController outputController = new TextEditingController();
+  final userInputController = new TextEditingController();
+  final inputController = new TextEditingController();
+  final outputController = new TextEditingController();
+  String _inputError;
 
-  void _moveRovers() {}
+  void _moveRovers() {
+    if (_inputError == null && userInputController.text != "") {
+      InputAutomate output = new InputAutomate(userInputController.text);
+      setState(() {
+        inputController.text = userInputController.text;
+        outputController.text = output.output;
+      });
+    }
+  }
+
+  void _refresh() {
+    userInputController.clear();
+    inputController.clear();
+    outputController.clear();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _inputError = null;
+    userInputController.addListener(_inputChangeValidate);
+  }
+
+  @override
+  void dispose() {
+    userInputController.dispose();
+    super.dispose();
+  }
+
+  void _inputChangeValidate() {
+    setState(() {
+      if (!_validateInput(userInputController.text) &&
+          userInputController.text != "") {
+        _inputError = "Invalid Input";
+      } else {
+        _inputError = null;
+      }
+    });
+  }
 
   bool _validateInput(String input) {
     return InputAutomate.validateInput(input);
@@ -25,7 +65,7 @@ class _HomeState extends State<Home> {
           IconButton(
             icon: const Icon(Icons.refresh),
             tooltip: 'Refresh',
-            onPressed: () {},
+            onPressed: _refresh,
           ),
         ]),
         body: GestureDetector(
@@ -41,21 +81,16 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Container(
-                      height: 200,
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
-                      child: TextField(
-                        controller: inputController,
-                        textAlignVertical: TextAlignVertical.top,
-                        maxLines: null,
-                        minLines: null,
-                        expands: true,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            focusColor: Colors.blue,
-                            labelText: 'Input',
-                            alignLabelWithHint: true),
-                      ),
+                    Row(
+                      children: [
+                        CustomTextBox(
+                          "User Input",
+                          userInputController,
+                          200,
+                          EdgeInsets.fromLTRB(0, 0, 0, 15),
+                          errorText: _inputError,
+                        ),
+                      ],
                     ),
                     Container(
                       height: 50,
@@ -66,21 +101,24 @@ class _HomeState extends State<Home> {
                         child: Text("Move Rovers"),
                       ),
                     ),
-                    Container(
-                      height: 200,
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
-                      child: TextField(
-                        textAlignVertical: TextAlignVertical.top,
-                        readOnly: true,
-                        maxLines: null,
-                        minLines: null,
-                        expands: true,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            focusColor: Colors.blue,
-                            labelText: 'Output',
-                            alignLabelWithHint: true),
-                      ),
+                    Row(
+                      children: [
+                        CustomTextBox(
+                          "Input",
+                          inputController,
+                          200,
+                          EdgeInsets.fromLTRB(0, 0, 5, 15),
+                          readOnly: true,
+                        ),
+                        Icon(Icons.arrow_right_alt),
+                        CustomTextBox(
+                          "Output",
+                          outputController,
+                          200,
+                          EdgeInsets.fromLTRB(5, 0, 0, 15),
+                          readOnly: true,
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -88,5 +126,45 @@ class _HomeState extends State<Home> {
             ],
           )),
         ));
+  }
+}
+
+class CustomTextBox extends StatefulWidget {
+  final String labelText;
+  final TextEditingController controller;
+  final double height;
+  final EdgeInsets padding;
+  final String errorText;
+  final bool readOnly;
+
+  CustomTextBox(this.labelText, this.controller, this.height, this.padding,
+      {this.errorText, this.readOnly});
+  @override
+  _CustomTextBoxState createState() => _CustomTextBoxState();
+}
+
+class _CustomTextBoxState extends State<CustomTextBox> {
+  @override
+  Widget build(BuildContext context) {
+    return Flexible(
+      child: Container(
+        height: widget.height,
+        padding: widget.padding,
+        child: TextField(
+          controller: widget.controller,
+          textAlignVertical: TextAlignVertical.top,
+          readOnly: widget.readOnly != null ? widget.readOnly : false,
+          maxLines: null,
+          minLines: null,
+          expands: true,
+          decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              errorText: widget.errorText,
+              focusColor: Colors.blue,
+              labelText: widget.labelText,
+              alignLabelWithHint: true),
+        ),
+      ),
+    );
   }
 }

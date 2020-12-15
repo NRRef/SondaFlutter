@@ -18,7 +18,7 @@ class InputAutomate {
 
   static bool validateInput(input) {
     return RegExp(
-            r"^[0-9]+\s[0-9]+(\n|\r)([0-9]+\s[0-9]+\s(N|E|S|W)(\n|\r)(L|R|M)*(\n|\r)*)*$")
+            r"^[0-9]+\s[0-9]+(?:[\n|\r][0-9]+\s[0-9]+\s[N|E|S|W][\n|\r][L|R|M]+)+$")
         .hasMatch(input);
   }
 
