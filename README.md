@@ -8,7 +8,7 @@ Para submissão do desafio foi desenvolvido um app em Dart/Flutter.
 Para executar o projeto é necessário ter o flutter instalado conforme a [documentação](https://flutter.dev/docs).
 Também é necessário possuir um dispositivo android ou AVM rodando na maquina.
 
-Após clonar este repositório, execute o comando abaixo na pasta do projeto.
+Após clonar este repositório, execute o comando abaixo na pasta do projeto:
 ```
 $ flutter run
 ```
