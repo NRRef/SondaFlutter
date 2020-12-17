@@ -1,6 +1,6 @@
 # Sonda Flutter
 
-Entrega do [desafio técnico](https://gist.github.com/eliasgarciajr/4ef466621b13f34963368b695f15a520) para a vaga de desenvolvedor na Cappta. <br>
+Entrega do [desafio técnico](https://gist.github.com/rmterra/31f2b4f589250839550f685d8873d935) para a vaga de desenvolvedor na Cappta. <br>
 Para submissão do desafio foi desenvolvido um app em Dart/Flutter.
 
 ## Instalação e uso
